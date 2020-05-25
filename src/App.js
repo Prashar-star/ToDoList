@@ -4,16 +4,25 @@ import TodoItem from "./TodoItem";
 import todosData from "./todosData";
 import Header from "./Header";
 
-function App() {
-  const todoitems = todosData.map(item => (
-    <TodoItem key={item.id} item={item} />
-  ));
+class App extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      todoArray: todosData
+    };
+  }
 
-  return (
-    <div>
-      <Header />
-      <div className="mylist">{todoitems}</div>;
-    </div>
-  );
+  render() {
+    const todoitems = this.state.todoArray.map(item => (
+      <TodoItem key={item.id} item={item} />
+    ));
+
+    return (
+      <div>
+        <Header />
+        <div className="mylist">{todoitems}</div>;
+      </div>
+    );
+  }
 }
 export default App;
